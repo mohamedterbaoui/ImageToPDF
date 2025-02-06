@@ -25,7 +25,7 @@ uploadBtn.addEventListener('click', async () => {
 
     try {
         // Sending the files to the backend
-        const response = await fetch('http://127.0.0.1:5000/upload', {
+        const response = await fetch('https://imagetopdf-3nph.onrender.com/upload', {
             method: 'POST',
             body: formData
         });

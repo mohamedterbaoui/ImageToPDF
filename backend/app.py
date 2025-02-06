@@ -29,7 +29,7 @@ def upload_images():
     pdf_path = os.path.join(PDF_FOLDER, "output.pdf")
     create_pdf(image_paths, pdf_path)
 
-    return jsonify({"pdf_url":f"http://127.0.0.1:5000/downloads/output.pdf"}), 200
+    return jsonify({"pdf_url":f"https://imagetopdf-3nph.onrender.com/downloads/output.pdf"}), 200
 
 def create_pdf(images_paths, pdf_path):
     if not images_paths:
@@ -49,4 +49,4 @@ def download_pdf(filename):
     return send_from_directory(PDF_FOLDER, filename, as_attachment=True)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
