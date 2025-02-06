@@ -16,10 +16,11 @@ uploadBtn.addEventListener('click', async () => {
     // HTTP request
     const formData = new FormData();
     for (let i = 0; i < files.length; i++){
+        console.log(i);
         formData.append("images", files[i]);
     }
 
-    const progressMessage = document.querySelector('message');
+    const progressMessage = document.querySelector('#message');
     progressMessage.textContent = "Uploading...";
 
     try {
@@ -34,9 +35,11 @@ uploadBtn.addEventListener('click', async () => {
 
         if (response.ok) {
             progressMessage.textContent = "Download your PDF at this link:";
-            const divBlock = document.querySelector('container');
+
+            const divBlock = document.querySelector('.container');
             const link = document.createElement('a');
-            link.href = "${data.pdf_url}";
+
+            link.href = `${data.pdf_url}`;
             link.target = "_blank";
             link.textContent = "Click Here";
 
@@ -46,6 +49,7 @@ uploadBtn.addEventListener('click', async () => {
             progressMessage.textContent = "Error: " + data.error;
         } 
     } catch (error) {
+        console.log(error);
         progressMessage.textContent = "Failed to connect to server.";
     }
 });
