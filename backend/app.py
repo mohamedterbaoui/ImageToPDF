@@ -11,6 +11,10 @@ PDF_FOLDER = "downloads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PDF_FOLDER, exist_ok=True)
 
+@app.route("/")
+def home():
+    return "Hello, your Flask app is running on Render!"
+
 @app.route("/upload", methods=["POST"])
 def upload_images():
     if "images" not in request.files:
