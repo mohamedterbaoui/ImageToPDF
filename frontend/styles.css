@@ -72,7 +72,7 @@ h1 {
   color: #007bff;
 }
 
-#uploadBtn {
+.sendBtn {
   background-color: #007bff;
   color: white;
   border: none;
