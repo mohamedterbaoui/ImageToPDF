@@ -84,7 +84,7 @@ h1 {
   width: 100%;
 }
 
-#uploadBtn:hover {
+#sendBtn:hover {
   background-color: #0056b3;
 }
 
@@ -102,7 +102,7 @@ h1 {
     padding: 20px;
   }
 
-  #uploadBtn {
+  .sendBtn {
     padding: 10px;
     font-size: 14px;
   }

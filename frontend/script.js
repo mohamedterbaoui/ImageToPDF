@@ -52,26 +52,26 @@ async function uploadFile(endpoint, inputSelector, messageSelector) {
 document
   .querySelector("#uploadBtn")
   .addEventListener("click", () =>
-    uploadFile("upload", "#imageInput", "#message")
+    uploadFile("upload", "#imageInputImageToPdf", "#message")
   );
 
 // PDF to Word
 document
   .querySelector("#convertWordBtn")
   .addEventListener("click", () =>
-    uploadFile("convert-pdf-to-word", "#pdfInput", "#wordMessage")
+    uploadFile("convert-pdf-to-word", "#imageInputPdfToWord", "#wordMessage")
   );
 
 // Merge PDFs
 document
   .querySelector("#mergeBtn")
   .addEventListener("click", () =>
-    uploadFile("merge-pdfs", "#mergeInput", "#mergeMessage")
+    uploadFile("merge-pdfs", "#imageInputMergePdfs", "#mergeMessage")
   );
 
 // Compress PDF
 document
   .querySelector("#compressBtn")
   .addEventListener("click", () =>
-    uploadFile("compress-pdf", "#compressInput", "#compressMessage")
+    uploadFile("compress-pdf", "#imageInputCompressPdf", "#compressMessage")
   );
