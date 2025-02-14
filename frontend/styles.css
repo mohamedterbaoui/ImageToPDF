@@ -1,59 +1,109 @@
-html {
-    height: 100%;
-    display: grid;
-    place-items: center;
-    margin: 0;
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    background-color: beige;
+.navbar {
+  max-width: 580px;
+  margin-top: 50px;
+  border-radius: 15px;
+  background-color: #007bff;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
 
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 15px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #0056b3;
+  border-radius: 15px;
 }
 
 .container {
-    border-radius: 15px;
-    background-color: #335c8a;
-    padding: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 5px 2px rgba(51, 51, 51, 0.7);
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  margin-top: 50px;
 }
 
 h1 {
-    color: white;
-    font-weight: 700;
-    margin-bottom: 100px;
+  color: #333;
 }
 
-h3 {
-    color: white;
+.subtitle {
+  color: #666;
+  margin-bottom: 20px;
 }
 
-#imageInput {
-    all : unset;
-    background-color: aliceblue;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 15px;
-    cursor: pointer;
+.upload-area {
+  border: 2px dashed #007bff;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #e9ecef;
+  cursor: pointer;
+}
+
+.upload-box {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #007bff;
 }
 
 #uploadBtn {
-    all :unset;
-    cursor: pointer;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #a32aff;
-    color: #F5F5F5;
-    font-weight: 900;
-    font-size: 1.5rem;
-    box-shadow: 2px 2px 5px 2px rgba(51, 51, 51, 0.7);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 #uploadBtn:hover {
-    background-color: #791ac2;
+  background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .upload-area {
+    padding: 20px;
+  }
+
+  #uploadBtn {
+    padding: 10px;
+    font-size: 14px;
+  }
 }

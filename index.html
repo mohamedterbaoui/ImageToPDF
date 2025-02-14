@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Image to PDF</title>
-        <link rel="stylesheet" href="frontend/styles.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Convert Images to one PDF file</h1>
-            <h3>Upload your images</h3>
-            <input type="file" id="imageInput" multiple accept="image/*">
-            <button id="uploadBtn">Combine into PDF</button>
-            <p id="message"></p>
-        </div>
-        <script src="frontend/script.js"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image to PDF</title>
+    <link rel="stylesheet" href="frontend/styles.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="#" class="nav-link" data-target="imageToPdf">Image to PDF</a>
+      <a href="#" class="nav-link" data-target="pdfToWord">PDF to Word</a>
+      <a href="#" class="nav-link" data-target="mergePdfs">Merge PDFs</a>
+      <a href="#" class="nav-link" data-target="compressPdf">Compress PDF</a>
+    </div>
+    <div class="container" id="imageToPdf">
+      <h1>Convert Images to PDF</h1>
+      <p class="subtitle">
+        Upload your images and combine them into a single PDF file.
+      </p>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" id="imageInput" multiple accept="image/*" />
+        <label for="imageInput" class="upload-box"
+          >Drag & Drop or Click to Upload</label
+        >
+      </div>
+      <button id="uploadBtn">Convert to PDF</button>
+      <p id="message"></p>
+    </div>
+
+    <div class="container" id="pdfToWord" style="display: none">
+      <h1>Convert PDF to Word</h1>
+      <p class="subtitle">
+        Upload your PDF file and convert it into a single Word file.
+      </p>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" id="imageInput" multiple accept="image/*" />
+        <label for="imageInput" class="upload-box"
+          >Drag & Drop or Click to Upload</label
+        >
+      </div>
+      <button id="uploadBtn">Convert to Word</button>
+      <p id="message"></p>
+    </div>
+
+    <div class="container" id="mergePdfs" style="display: none">
+      <h1>Merge PDFs into one PDF</h1>
+      <p class="subtitle">
+        Upload your PDFs and combine them into a single PDF file.
+      </p>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" id="imageInput" multiple accept="image/*" />
+        <label for="imageInput" class="upload-box"
+          >Drag & Drop or Click to Upload</label
+        >
+      </div>
+      <button id="uploadBtn">Merge PDFs</button>
+      <p id="message"></p>
+    </div>
+
+    <div class="container" id="compressPdf" style="display: none">
+      <h1>Compress PDF into smaller size</h1>
+      <p class="subtitle">
+        Upload your PDF and compress it into a smaller PDF file.
+      </p>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" id="imageInput" multiple accept="image/*" />
+        <label for="imageInput" class="upload-box"
+          >Drag & Drop or Click to Upload</label
+        >
+      </div>
+      <button id="uploadBtn">Compress PDF</button>
+      <p id="message"></p>
+    </div>
+    <script src="frontend/script.js"></script>
+  </body>
 </html>
