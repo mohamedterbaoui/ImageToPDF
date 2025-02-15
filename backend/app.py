@@ -53,23 +53,33 @@ def create_pdf(images_paths, pdf_path):
 
 @app.route("/convert-pdf-to-word", methods=["POST"])
 def convert_pdf_to_word():
-    if "pdf" not in request.files:
-        return jsonify({"error": "No PDF uploaded"}), 400
+    try:
+        if "pdf" not in request.files:
+            return jsonify({"error": "No PDF uploaded"}), 400
 
-    pdf_file = request.files["pdf"]
-    pdf_path = os.path.join(UPLOAD_FOLDER, pdf_file.filename)
-    pdf_file.save(pdf_path)
+        pdf_file = request.files["pdf"]
+        pdf_path = os.path.join(UPLOAD_FOLDER, pdf_file.filename)
+        pdf_file.save(pdf_path)
 
-    word_path = os.path.join(PDF_FOLDER, pdf_file.filename.replace(".pdf", ".docx"))
+        word_path = os.path.join(PDF_FOLDER, pdf_file.filename.replace(".pdf", ".docx"))
 
-    with open(pdf_path, "rb") as pdf_file:
-        pdf_reader = PdfReader(pdf_file)
-        text = "\n".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
+        # Debugging: Check if file was saved properly
+        print(f"PDF saved at: {pdf_path}")
 
-    with open(word_path, "wb") as word_file:
-        word_file.write(mammoth.convert_to_docx(text.encode()).value.encode())
+        with open(pdf_path, "rb") as pdf_file:
+            pdf_reader = PdfReader(pdf_file)
+            text = "\n".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
 
-    return jsonify({"word_url": f"https://imagetopdf-3nph.onrender.com/downloads/{os.path.basename(word_path)}"}), 200
+        with open(word_path, "wb") as word_file:
+            word_file.write(mammoth.convert_to_docx(text.encode()).value.encode())
+
+        # Debugging: Check if Word file was saved
+        print(f"Word file saved at: {word_path}")
+
+        return jsonify({"word_url": f"https://imagetopdf-3nph.onrender.com/downloads/{os.path.basename(word_path)}"}), 200
+    except Exception as e:
+        print(f"Error in convert_pdf_to_word: {e}")
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/merge-pdfs", methods=["POST"])
 def merge_pdfs():

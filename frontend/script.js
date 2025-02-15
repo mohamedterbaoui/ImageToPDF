@@ -22,7 +22,7 @@ async function uploadFile(endpoint, inputSelector, messageSelector) {
 
   const formData = new FormData();
   for (let i = 0; i < files.length; i++) {
-    formData.append("files", files[i]);
+    formData.append("images", files[i]);
   }
 
   const message = document.querySelector(messageSelector);
@@ -38,6 +38,7 @@ async function uploadFile(endpoint, inputSelector, messageSelector) {
     );
 
     const data = await response.json();
+    console.log(response);
     if (response.ok) {
       message.innerHTML = `Download your file: <a href="${data.pdf_url}" target="_blank">Click Here</a>`;
     } else {
