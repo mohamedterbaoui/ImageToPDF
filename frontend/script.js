@@ -26,7 +26,8 @@ async function uploadFile(endpoint, inputSelector, messageSelector) {
     const file = files[i];
 
     if (file.type === "application/pdf") {
-      formData.append("pdf", file); // Append PDF under "pdf" field
+      const fieldName = endpoint === "merge-pdfs" ? "pdfs" : "pdf";
+      formData.append(fieldName, file); // Append PDF under "pdf" field
     } else if (file.type.startsWith("image/")) {
       formData.append("images", file); // Append image under "images" field
     } else {
@@ -49,9 +50,12 @@ async function uploadFile(endpoint, inputSelector, messageSelector) {
     const data = await response.json();
     console.log(response);
     if (response.ok) {
-      message.innerHTML = `Download your file: <a href="${data.pdf_url}" target="_blank">Click Here</a>`;
-    } else {
-      message.textContent = "Error: " + data.error;
+      const fileUrl = data.pdf_url || data.word_url; // Handle different responses
+      if (fileUrl) {
+        message.innerHTML = `Download your file: <a href="${fileUrl}" target="_blank">Click Here</a>`;
+      } else {
+        message.textContent = "Error: " + data.error;
+      }
     }
   } catch (error) {
     message.textContent = "Failed to connect to server.";
