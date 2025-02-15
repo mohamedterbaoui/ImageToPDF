@@ -5,6 +5,7 @@ from PIL import Image
 from reportlab.pdfgen import canvas
 from PyPDF2 import PdfMerger, PdfReader, PdfWriter
 import mammoth
+from pdf2docx import Converter
 
 app = Flask(__name__)
 CORS(app)
@@ -53,7 +54,6 @@ def create_pdf(images_paths, pdf_path):
 
 @app.route("/convert-pdf-to-word", methods=["POST"])
 def convert_pdf_to_word():
-    print("hello, World! ")
     try:
         if "pdf" not in request.files:
             return jsonify({"error": "No PDF uploaded"}), 400
@@ -64,17 +64,11 @@ def convert_pdf_to_word():
 
         word_path = os.path.join(PDF_FOLDER, pdf_file.filename.replace(".pdf", ".docx"))
 
-        # Debugging: Check if file was saved properly
-        print(f"PDF saved at: {pdf_path}")
+        # Convert PDF to Word using pdf2docx
+        cv = Converter(pdf_path)
+        cv.convert(word_path)
+        cv.close()
 
-        with open(pdf_path, "rb") as pdf_file:
-            pdf_reader = PdfReader(pdf_file)
-            text = "\n".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
-
-        with open(word_path, "wb") as word_file:
-            word_file.write(mammoth.convert_to_docx(text.encode()).value.encode())
-
-        # Debugging: Check if Word file was saved
         print(f"Word file saved at: {word_path}")
 
         return jsonify({"word_url": f"https://imagetopdf-3nph.onrender.com/downloads/{os.path.basename(word_path)}"}), 200

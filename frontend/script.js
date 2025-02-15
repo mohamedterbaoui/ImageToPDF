@@ -22,7 +22,16 @@ async function uploadFile(endpoint, inputSelector, messageSelector) {
 
   const formData = new FormData();
   for (let i = 0; i < files.length; i++) {
-    formData.append("images", files[i]);
+    // Check the file type and append to the correct field name
+    const file = files[i];
+
+    if (file.type === "application/pdf") {
+      formData.append("pdf", file); // Append PDF under "pdf" field
+    } else if (file.type.startsWith("image/")) {
+      formData.append("images", file); // Append image under "images" field
+    } else {
+      console.error("Unsupported file type:", file.type);
+    }
   }
 
   const message = document.querySelector(messageSelector);
@@ -30,7 +39,7 @@ async function uploadFile(endpoint, inputSelector, messageSelector) {
 
   try {
     const response = await fetch(
-      "https://imagetopdf-3nph.onrender.com/upload",
+      `https://imagetopdf-3nph.onrender.com/${endpoint}`,
       {
         method: "POST",
         body: formData,

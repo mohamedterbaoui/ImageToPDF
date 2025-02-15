@@ -5,3 +5,4 @@ reportlab
 gunicorn
 pypdf2
 mammoth
+pdf2docx
