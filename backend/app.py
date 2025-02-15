@@ -53,6 +53,7 @@ def create_pdf(images_paths, pdf_path):
 
 @app.route("/convert-pdf-to-word", methods=["POST"])
 def convert_pdf_to_word():
+    print("hello, World! ")
     try:
         if "pdf" not in request.files:
             return jsonify({"error": "No PDF uploaded"}), 400
